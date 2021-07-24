@@ -1,4 +1,3 @@
-// http project httpclient.go
 package http
 
 import (
@@ -27,19 +26,6 @@ type HttpClient struct {
 	ContentType           string
 	BindIp                string
 	Proxy                 string
-}
-
-type ResponseData struct {
-	Error         error
-	Status        string
-	StatusCode    int
-	Proto         string
-	ProtoMajor    int
-	ProtoMinor    int
-	Header        http.Header
-	ContentLength int64
-	Body          []byte
-	Request       *http.Request
 }
 
 func NewHttpClient() (returnValue HttpClient) {
@@ -72,7 +58,7 @@ func (obj HttpClient) ClearHeaders() {
 	}
 }
 
-func (obj HttpClient) Query(method string, u string, postData []byte) (returnValue ResponseData) {
+func (obj HttpClient) Query(method string, u string, postData []byte) (returnValue HttpResponseData) {
 	defer func() {
 		if err := recover(); err != nil {
 			returnValue.Error = fmt.Errorf("%v", err)
