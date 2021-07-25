@@ -58,7 +58,7 @@ func (obj HttpClient) ClearHeaders() {
 	}
 }
 
-func (obj HttpClient) Query(method string, u string, postData []byte) (returnValue HttpResponseData) {
+func (obj HttpClient) GetResponseData(method string, u string, postData []byte) (returnValue HttpResponseData) {
 	defer func() {
 		if err := recover(); err != nil {
 			returnValue.Error = fmt.Errorf("%v", err)
